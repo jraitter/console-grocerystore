@@ -15,10 +15,10 @@ namespace escape_corona.Models
 
 
       // NOTE Create all rooms
-      Room lobby = new Room("Lobby", "Main entrance to this grocery store");
-      Room toiletries = new Room("Toiletries", "items used in washing and taking care of one's body, such as soap, shampoo, and toothpaste.");
-      Room travel = new Room("Travel", "See a travel agent to help book you next vaction");
-      Room pharmacy = new Room("Pharmacy", "items use for fighting sickness, headaches, and schedule a vaccination");
+      Room lobby = new Room("Lobby", "This is the main entrance to this grocery store");
+      Room toiletries = new Room("Toiletries", "In this dept. you will find items used for washing and taking care of one's body, such as soap, shampoo, and toothpaste.");
+      Room travel = new Room("Travel", "In this dept, you can see a travel agent to help book you next vaction");
+      Room pharmacy = new Room("Pharmacy", "items use for fighting sickness, headaches, and receive a vaccination");
       Room foods = new Room("Foods", "All food items for cooking breakfast lunch and supper");
       Room checkout = new Room("Checkout", "Use the self-serve registers or wait in line for help");
       EndRoom outside = new EndRoom("Outside", "You made it out and have finished your shopping adventure", true, "Now go home and stay inside for 21 days.  Governor's orders");
@@ -32,6 +32,7 @@ namespace escape_corona.Models
       Item appt = new Item("Appointment", "May need to have an appointment in order to get a vaccination");
 
       // NOTE Make Room Relationships
+      // add to Dictionary<string, IRoom>
       lobby.Exits.Add("east", toiletries);
       lobby.Exits.Add("north", checkout);
 
@@ -41,9 +42,7 @@ namespace escape_corona.Models
 
       foods.Exits.Add("south", toiletries);
       foods.Exits.Add("west", checkout);
-      foods.Exits.Add("east", pharmacy);
 
-      travel.Exits.Add("north", pharmacy);
       travel.Exits.Add("west", toiletries);
       travel.Exits.Add("east", vaction);
 
@@ -52,15 +51,14 @@ namespace escape_corona.Models
 
       checkout.Exits.Add("east", foods);
       checkout.Exits.Add("south", lobby);
-      checkout.Exits.Add("west", outside);
 
-
+      //add to Dictionary<IItem, KeyValuePair<string, IRoom>>
       foods.AddLockedRoom(appt, "east", pharmacy);
       travel.AddLockedRoom(appt, "north", pharmacy);
       checkout.AddLockedRoom(vaccination, "west", outside);
 
 
-      // NOTE put Items in Rooms
+      // NOTE put Items in a list in Room
       toiletries.Items.Add(tp);
       toiletries.Items.Add(hs);
       travel.Items.Add(appt);
