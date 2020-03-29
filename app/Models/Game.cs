@@ -30,6 +30,7 @@ namespace escape_corona.Models
       Item eggs = new Item("Eggs", "Make sure to get a lot of these, something about fear that makes you eat more eggs.  Maybe that is why the need for so much toilet paper?");
       Item vaccination = new Item("Vaccination", "Make sure to get a vacciantion.  It may be your only chance for survival");
       Item appt = new Item("Appointment", "May need to have an appointment in order to get a vaccination");
+      Item receipt = new Item("Receipt", "A receipt will be required to leave ths mini-mart");
 
       // NOTE Make Room Relationships
       // add to Dictionary<string, IRoom>
@@ -55,7 +56,7 @@ namespace escape_corona.Models
       //add to Dictionary<IItem, KeyValuePair<string, IRoom>>
       foods.AddLockedRoom(appt, "east", pharmacy);
       travel.AddLockedRoom(appt, "north", pharmacy);
-      checkout.AddLockedRoom(vaccination, "west", outside);
+      checkout.AddLockedRoom(receipt, "west", outside);
 
 
       // NOTE put Items in a list in Room
@@ -64,7 +65,7 @@ namespace escape_corona.Models
       travel.Items.Add(appt);
       pharmacy.Items.Add(vaccination);
       foods.Items.Add(eggs);
-
+      checkout.HiddenItems.Add(receipt);
 
       CurrentRoom = lobby;
     }

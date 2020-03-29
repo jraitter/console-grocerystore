@@ -32,24 +32,17 @@ namespace escape_corona.Controllers
     }
     public void GetUserInput()
     {
-      // go north
-      // take brass key
-      // command option
-      // look
-      // command
       Console.WriteLine("What would you like to do?");
       string input = Console.ReadLine().ToLower() + " "; //go north ;take toilet paper ;look 
       string command = input.Substring(0, input.IndexOf(" ")); //go; take; look
       string option = input.Substring(input.IndexOf(" ") + 1).Trim();//north; toilet paper;''
 
-      Console.Clear();
       switch (command)
       {
         case "quit":
         case "q":
           _running = false;
           _gs.Messages.Add(new Message("Good-bye", ConsoleColor.White));
-
           break;
         case "reset":
           _gs.Reset();
@@ -57,13 +50,21 @@ namespace escape_corona.Controllers
         case "look":
           _gs.Look();
           break;
+        case "help":
+          _gs.Help();
+          break;
         case "inventory":
+        case "inv":
           _gs.Inventory();
+          break;
+        case "checkout":
+          _gs.Checkout();
           break;
         case "go":
           _running = _gs.Go(option);
           break;
         case "take":
+        case "get":
           _gs.Take(option);
           break;
         case "use":

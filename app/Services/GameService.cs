@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using bb_mvc.Models;
@@ -8,7 +9,6 @@ namespace escape_corona.Services
 {
   class GameService : IGameService
   {
-    //public List<string> Messages { get; set; }
     public List<Message> Messages { get; set; }
     private IGame _game { get; set; }
 
@@ -18,7 +18,9 @@ namespace escape_corona.Services
       Messages = new List<Message>();
       _game = new Game();
       _game.CurrentPlayer = new Player(playerName);
-      Look();
+      Messages.Add(new Message(Utils.ObjectiveMessage, ConsoleColor.Red));
+
+      //Look();
     }
 
     public bool Go(string direction)
@@ -47,7 +49,7 @@ namespace escape_corona.Services
 
     public void Help()
     {
-      throw new System.NotImplementedException();
+      Messages.Add(new Message(Utils.HelpMessage, ConsoleColor.DarkGreen));
     }
 
     public void Inventory()
@@ -58,6 +60,36 @@ namespace escape_corona.Services
         Messages.Add(new Message($"{item.Name} - {item.Description}"));
       }
     }
+    public void Checkout()
+    {
+      int foundCount = 0;
+
+      if ((string)_game.CurrentRoom.Name != "Checkout")
+      {
+        Messages.Add(new Message("Must be at cash register to checkout"));
+        return;
+      }
+
+      //inventory must contain tp, hs, eggs, vacc to check out.
+      foreach (var item in _game.CurrentPlayer.Inventory)
+      {
+        if ((string)item.Name == "Toilet Paper" || (string)item.Name == "Hand Sanatizer" || (string)item.Name == "Eggs" || (string)item.Name == "Vaccination")
+        {
+          foundCount++;
+        }
+      }//endof foreach
+
+      if (foundCount < 4)
+      {
+        Messages.Add(new Message("You do not have all the proper items in your invetory, please continue to shop"));
+        return;
+      }
+      //otherwise hide receipt in inventory to be used
+      _game.CurrentPlayer.Inventory.Add(_game.CurrentRoom.HiddenItems[receipt]);
+      //Messages.Add(new Message(receipt.Description));
+
+    }//endof checkout
+
 
     public void Look()
     {
@@ -120,7 +152,5 @@ namespace escape_corona.Services
       Messages.Add(new Message("You don't have that Item"));
     }
 
-
-
-  }
-}
+  }//endof class
+}//endof namespace

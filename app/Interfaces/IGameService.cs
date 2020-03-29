@@ -14,6 +14,7 @@ namespace escape_corona.Interfaces
     void Take(string itemName);
     void Use(string itemName);
     void Inventory();
+    void Checkout();
     void Help();
     #endregion
   }

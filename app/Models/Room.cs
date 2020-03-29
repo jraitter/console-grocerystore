@@ -9,6 +9,7 @@ namespace escape_corona.Models
     public string Name { get; set; }
     public string Description { get; set; }
     public List<IItem> Items { get; set; }
+    public List<IItem> HiddenItems { get; set; }
     public Dictionary<string, IRoom> Exits { get; set; }
     public Dictionary<IItem, KeyValuePair<string, IRoom>> LockedExits { get; set; }
 
@@ -18,6 +19,7 @@ namespace escape_corona.Models
       Name = name;
       Description = description;
       Items = new List<IItem>();
+      HiddenItems = new List<IItem>();
       Exits = new Dictionary<string, IRoom>();
       LockedExits = new Dictionary<IItem, KeyValuePair<string, IRoom>>();
     }
@@ -42,9 +44,9 @@ namespace escape_corona.Models
             actionMessage = @"You have unlocked the door to the pharmacy.
     Now that it is your appointment time,enter the pharmacy and get a vaccination";
             break;
-          case "vaccination":
+          case "receipt":
             actionMessage = @"You have unlocked the door to leave the store.
-    Now that you have had a vaccination, you may leave";
+    Now that you have checked out, you may leave";
             break;
           default:
             actionMessage = "You have unlocked a room";
