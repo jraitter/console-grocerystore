@@ -58,7 +58,13 @@ namespace escape_corona.Controllers
           _gs.Inventory();
           break;
         case "checkout":
-          _gs.Checkout();
+
+          if (!_gs.Checkout())
+          {
+            _running = false;
+            _gs.Messages.Add(new Message("Good-bye", ConsoleColor.White));
+          };
+
           break;
         case "go":
           _running = _gs.Go(option);

@@ -60,14 +60,14 @@ namespace escape_corona.Services
         Messages.Add(new Message($"{item.Name} - {item.Description}"));
       }
     }
-    public void Checkout()
+    public bool Checkout()
     {
       int foundCount = 0;
 
       if ((string)_game.CurrentRoom.Name != "Checkout")
       {
         Messages.Add(new Message("Must be at cash register to checkout"));
-        return;
+        return true;
       }
 
       //inventory must contain tp, hs, eggs, vacc to check out.
@@ -79,19 +79,26 @@ namespace escape_corona.Services
         }
       }//endof foreach
 
+      if (foundCount == 0)
+      {
+        Messages.Add(new Message("You do not have any items in your inventory and tried to checkout.  You are being asked to leave the Mini-Mart"));
+        return false;
+      }
+
       if (foundCount < 4)
       {
         Messages.Add(new Message("You do not have all the proper items in your invetory, please continue to shop"));
-        return;
+        return true;
       }
       //otherwise hide receipt in inventory to be used
       var found = _game.CurrentRoom.HiddenItems.Find(i => i.Name == "Receipt");
       if (found == null)
       {
         Messages.Add(new Message("crash and burn on null reference"));
-        return;
+        return true;
       }
       _game.CurrentPlayer.Inventory.Add(found);
+      return true;
 
     }//endof checkout
 

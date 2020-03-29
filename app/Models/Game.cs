@@ -27,7 +27,7 @@ namespace escape_corona.Models
       // NOTE Create all Items
       Item tp = new Item("Toilet Paper", "Make sure to get a lot of this, something about fear that makes you poop more");
       Item hs = new Item("Hand Sanatizer", "This is a product that is used to remove germs from the skin of the hands.");
-      Item eggs = new Item("Eggs", "Make sure to get a lot of these, something about fear that makes you eat more eggs.  Maybe that is why the need for so much toilet paper?");
+      Item eggs = new Item("Eggs", "Make sure to get a lot of these, something about fear that makes you eat more eggs.");
       Item vaccination = new Item("Vaccination", "Make sure to get a vacciantion.  It may be your only chance for survival");
       Item appt = new Item("Appointment", "May need to have an appointment in order to get a vaccination");
       Item receipt = new Item("Receipt", "A receipt will be required to leave ths mini-mart");
