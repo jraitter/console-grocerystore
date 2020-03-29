@@ -85,8 +85,13 @@ namespace escape_corona.Services
         return;
       }
       //otherwise hide receipt in inventory to be used
-      _game.CurrentPlayer.Inventory.Add(_game.CurrentRoom.HiddenItems[receipt]);
-      //Messages.Add(new Message(receipt.Description));
+      var found = _game.CurrentRoom.HiddenItems.Find(i => i.Name == "Receipt");
+      if (found == null)
+      {
+        Messages.Add(new Message("crash and burn on null reference"));
+        return;
+      }
+      _game.CurrentPlayer.Inventory.Add(found);
 
     }//endof checkout
 
