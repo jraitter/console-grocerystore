@@ -24,8 +24,12 @@ namespace escape_corona.Models
  reset     ---  Will reset the game.  Used to start over.
  quit      ---  Will exit the game.  'q' also works.
  help      ---  Shows this menu.
+
+ (hint: to find out where you are, type 'look')
 ";
     public static string ObjectiveMessage = @"
+YEAR:  2020
+
 SITUATION:  A pandemic is occuring with the outbreak of COVID-19, know as Corona Virus.
 
 OBJECTIVE:  Enter the mini-mart and gather items needed to survive a possible lock-down.

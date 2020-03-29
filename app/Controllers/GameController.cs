@@ -16,11 +16,11 @@ namespace escape_corona.Controllers
       Console.WriteLine("Hello there what is your name?");
       // NOTE Gets string from readline and passes is as the player name
       _gs = new GameService(Console.ReadLine());
-      string greeting = "Welcome to MiniMart, you are here to get essential for the COVID-19 scare, good luck!";
+      string greeting = "Welcome to MiniMart Game, you are here to get the essentials for the COVID-19 scare, good luck!                ";
       foreach (char letter in greeting)
       {
         Console.Write(letter);
-        //Thread.Sleep(100);
+        Thread.Sleep(100);
       }
       Console.WriteLine();
       Print();

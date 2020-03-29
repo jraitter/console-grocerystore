@@ -15,7 +15,7 @@ namespace escape_corona.Models
 
 
       // NOTE Create all rooms
-      Room lobby = new Room("Lobby", "This is the main entrance to this grocery store");
+      Room lobby = new Room("Lobby", "This is the main entrance to the Mini-Mart grocery store");
       Room toiletries = new Room("Toiletries", "In this dept. you will find items used for washing and taking care of one's body, such as soap, shampoo, and toothpaste.");
       Room travel = new Room("Travel", "In this dept, you can see a travel agent to help book you next vaction");
       Room pharmacy = new Room("Pharmacy", "items use for fighting sickness, headaches, and receive a vaccination");
